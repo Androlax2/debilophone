@@ -1,9 +1,11 @@
 const $textarea = document.querySelector('#text');
 const $transformedText = document.querySelector('#transformedText');
 const $button = document.querySelector('#button');
+const $copy = document.querySelector('#copy');
 
 $button.addEventListener('click', e => {
     e.preventDefault();
+
     const text = $textarea.value.toLowerCase();
     let transformedText = '';
 
@@ -17,4 +19,15 @@ $button.addEventListener('click', e => {
     }
 
     $transformedText.textContent = transformedText;
+});
+
+$copy.addEventListener('click', e => {
+    e.preventDefault();
+
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents($transformedText);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
 });

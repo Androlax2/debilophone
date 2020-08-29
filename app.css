@@ -7,3 +7,9 @@
 textarea {
     resize: vertical;
 }
+#copy {
+    display: none;
+}
+#transformedText:not(:empty) + #copy {
+    display: block;
+}
